@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Irregular Verbs – Past Simple Exercise</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2d6a4f;
+    --green-light: #52b788;
+    --green-pale: #d8f3dc;
+    --cream: #fefae0;
+    --brown: #5c4033;
+    --red: #c0392b;
+    --gold: #e9c46a;
+    --shadow: 0 4px 18px rgba(44,90,60,0.13);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--brown);
+    min-height: 100vh;
+    padding: 0 0 60px;
+  }
+
+  header {
+    background: var(--green);
+    color: white;
+    padding: 36px 24px 28px;
+    text-align: center;
+    border-bottom: 6px solid var(--green-light);
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(135deg, transparent, transparent 18px, rgba(255,255,255,0.04) 18px, rgba(255,255,255,0.04) 36px);
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    letter-spacing: 0.02em;
+    position: relative;
+  }
+  header p {
+    margin-top: 8px;
+    font-size: 0.95rem;
+    opacity: 0.85;
+    position: relative;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--brown);
+    font-weight: 700;
+    font-size: 0.78rem;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-top: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    position: relative;
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 32px 18px 0;
+  }
+
+  .instructions {
+    background: var(--green-pale);
+    border-left: 5px solid var(--green-light);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 32px;
+    font-size: 0.97rem;
+    line-height: 1.6;
+  }
+  .instructions strong { color: var(--green); }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--green);
+    margin: 32px 0 16px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--green-pale);
+  }
+
+  .sentence-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .sentence-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: box-shadow 0.2s;
+  }
+  .sentence-card:hover { box-shadow: 0 6px 24px rgba(44,90,60,0.18); }
+
+  .num {
+    min-width: 28px;
+    height: 28px;
+    background: var(--green);
+    color: white;
+    border-radius: 50%;
+    font-size: 0.82rem;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .sentence-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .blank {
+    display: inline-block;
+    border-bottom: 2.5px solid var(--green-light);
+    min-width: 90px;
+    height: 24px;
+    margin: 0 4px;
+    vertical-align: bottom;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+
+  input.fill {
+    border: none;
+    border-bottom: 2.5px solid var(--green-light);
+    background: transparent;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.02rem;
+    color: var(--green);
+    font-weight: 600;
+    width: 100px;
+    outline: none;
+    padding: 0 4px;
+    text-align: center;
+    transition: border-color 0.2s, background 0.2s;
+    border-radius: 2px;
+  }
+  input.fill:focus {
+    border-bottom-color: var(--green);
+    background: var(--green-pale);
+  }
+  input.fill.correct {
+    border-bottom-color: #27ae60;
+    background: #eafaf1;
+    color: #27ae60;
+  }
+  input.fill.wrong {
+    border-bottom-color: var(--red);
+    background: #fdf2f2;
+    color: var(--red);
+  }
+
+  .hint {
+    font-size: 0.8rem;
+    color: #888;
+    font-style: italic;
+    margin-left: 6px;
+  }
+
+  .controls {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 36px 0 0;
+    justify-content: center;
+  }
+
+  button {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.97rem;
+    font-weight: 700;
+    padding: 13px 32px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: transform 0.12s, box-shadow 0.12s;
+  }
+  button:active { transform: scale(0.97); }
+
+  #checkBtn {
+    background: var(--green);
+    color: white;
+    box-shadow: 0 3px 12px rgba(44,106,79,0.3);
+  }
+  #checkBtn:hover { background: #245a3f; }
+
+  #showBtn {
+    background: var(--gold);
+    color: var(--brown);
+    box-shadow: 0 3px 12px rgba(233,196,106,0.4);
+  }
+  #showBtn:hover { background: #d4a843; }
+
+  #resetBtn {
+    background: white;
+    color: var(--green);
+    border: 2px solid var(--green-light);
+  }
+  #resetBtn:hover { background: var(--green-pale); }
+
+  #scoreBox {
+    display: none;
+    text-align: center;
+    margin: 24px 0 0;
+    padding: 18px 24px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    font-size: 1.1rem;
+  }
+  #scoreBox strong { color: var(--green); font-size: 1.4rem; }
+
+  .answer-key {
+    display: none;
+    margin-top: 32px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 22px 24px;
+  }
+  .answer-key h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--green);
+    margin-bottom: 14px;
+    font-size: 1.1rem;
+  }
+  .answer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px 16px;
+  }
+  .answer-item {
+    font-size: 0.9rem;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--green-pale);
+    color: var(--brown);
+  }
+  .answer-item span { color: var(--green); font-weight: 700; }
+
+  footer {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 0.82rem;
+    color: #aaa;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Irregular Verbs in the Past Simple</h1>
+  <p>Fill in the blanks with the correct past simple form</p>
+  <div class="badge">35 sentences · Mixed levels</div>
+</header>
+
+<div class="container">
+
+  <div class="instructions">
+    <strong>Instructions:</strong> Write the correct <strong>Past Simple</strong> form of the verb given in brackets. 
+    When you finish, click <strong>Check Answers</strong> to see your score, or <strong>Show Answers</strong> to reveal all correct forms.
+  </div>
+
+  <div class="section-title">Part 1 – Sentences 1–17</div>
+  <div class="sentence-list" id="part1"></div>
+
+  <div class="section-title">Part 2 – Sentences 18–35</div>
+  <div class="sentence-list" id="part2"></div>
+
+  <div class="controls">
+    <button id="checkBtn" onclick="checkAnswers()">✓ Check Answers</button>
+    <button id="showBtn" onclick="showAnswers()">👁 Show Answers</button>
+    <button id="resetBtn" onclick="resetAll()">↺ Reset</button>
+  </div>
+
+  <div id="scoreBox"></div>
+  <div class="answer-key" id="answerKey"></div>
+
+</div>
+
+<footer>Past Simple – Irregular Verbs Exercise</footer>
+
+<script>
+const sentences = [
+  // Part 1
+  { text: "She ___ to the supermarket and ___ some fresh vegetables.", blanks: ["went","bought"], hints: ["go","buy"] },
+  { text: "He ___ up late, so he ___ to catch the bus.", blanks: ["woke","ran"], hints: ["wake","run"] },
+  { text: "They ___ in the park and ___ sandwiches for lunch.", blanks: ["sat","ate"], hints: ["sit","eat"] },
+  { text: "I ___ a long letter and ___ it to my grandmother.", blanks: ["wrote","sent"], hints: ["write","send"] },
+  { text: "She ___ tired, so she ___ down on the sofa and ___ for an hour.", blanks: ["felt","lay","slept"], hints: ["feel","lie","sleep"] },
+  { text: "He ___ his phone and ___ to his friend for a long time.", blanks: ["took","spoke"], hints: ["take","speak"] },
+  { text: "We ___ to the beach and ___ in the sea.", blanks: ["drove","swam"], hints: ["drive","swim"] },
+  { text: "She ___ a cake and ___ it to her teacher.", blanks: ["made","gave"], hints: ["make","give"] },
+  { text: "The children ___ songs and ___ juice at the party.", blanks: ["sang","drank"], hints: ["sing","drink"] },
+  { text: "He ___ about the problem and ___ a good solution.", blanks: ["thought","found"], hints: ["think","find"] },
+  { text: "I ___ the answer but ___ to raise my hand.", blanks: ["knew","forgot"], hints: ["know","forget"] },
+  { text: "She ___ a noise and ___ downstairs to check.", blanks: ["heard","came"], hints: ["hear","come"] },
+  { text: "They ___ us the news and we ___ very happy.", blanks: ["told","felt"], hints: ["tell","feel"] },
+  { text: "He ___ a glass and ___ his finger.", blanks: ["broke","cut"], hints: ["break","cut"] },
+  { text: "We ___ some old friends and ___ dinner together.", blanks: ["met","had"], hints: ["meet","have"] },
+  { text: "The dog ___ into the garden and ___ in the mud.", blanks: ["ran","fell"], hints: ["run","fall"] },
+  { text: "My brother ___ his bike and ___ it to school.", blanks: ["got","rode"], hints: ["get","ride"] },
+  // Part 2
+  { text: "She ___ the door and ___ inside quietly.", blanks: ["left","came"], hints: ["leave","come"] },
+  { text: "I ___ a book from the shelf and ___ it all afternoon.", blanks: ["took","read"], hints: ["take","read"] },
+  { text: "He ___ his coat and ___ in the cold air.", blanks: ["wore","stood"], hints: ["wear","stand"] },
+  { text: "The bird ___ away when we ___ too close.", blanks: ["flew","got"], hints: ["fly","get"] },
+  { text: "We ___ a fire and ___ around it to keep warm.", blanks: ["built","sat"], hints: ["build","sit"] },
+  { text: "She ___ her keys and ___ for them everywhere.", blanks: ["lost","looked"], hints: ["lose","look – regular"] },
+  { text: "He ___ the ball and ___ it over the fence.", blanks: ["caught","threw"], hints: ["catch","throw"] },
+  { text: "They ___ in a big house and ___ two dogs.", blanks: ["lived","kept"], hints: ["live – regular","keep"] },
+  { text: "I ___ early and ___ a long shower before work.", blanks: ["rose","had"], hints: ["rise","have"] },
+  { text: "She ___ French at school and ___ it very well.", blanks: ["learnt","spoke"], hints: ["learn","speak"] },
+  { text: "He ___ out of bed and ___ his head on the shelf.", blanks: ["fell","hit"], hints: ["fall","hit"] },
+  { text: "The teacher ___ the answer on the board and ___ the class.", blanks: ["drew","taught"], hints: ["draw","teach"] },
+  { text: "We ___ a lot of money and ___ a new car.", blanks: ["spent","bought"], hints: ["spend","buy"] },
+  { text: "She ___ a beautiful song and everyone ___.", blanks: ["sang","wept"], hints: ["sing","weep"] },
+  { text: "He ___ the letter, ___ it in an envelope, and ___ it.", blanks: ["wrote","put","sent"], hints: ["write","put","send"] },
+  { text: "They ___ to the city, ___ a hotel, and ___ the night there.", blanks: ["went","found","spent"], hints: ["go","find","spend"] },
+  { text: "I ___ my old friend at the café; we ___ tea and ___ for hours.", blanks: ["met","had","spoke"], hints: ["meet","have","speak"] },
+  { text: "The wind ___ strongly and ___ several trees in the park.", blanks: ["blew","broke"], hints: ["blow","break"] },
+];
+
+function buildExercise() {
+  const p1 = document.getElementById('part1');
+  const p2 = document.getElementById('part2');
+  sentences.forEach((s, i) => {
+    const card = buildCard(s, i);
+    (i < 17 ? p1 : p2).appendChild(card);
+  });
+}
+
+function buildCard(s, idx) {
+  const card = document.createElement('div');
+  card.className = 'sentence-card';
+
+  const num = document.createElement('div');
+  num.className = 'num';
+  num.textContent = idx + 1;
+
+  const textDiv = document.createElement('div');
+  textDiv.className = 'sentence-text';
+
+  let parts = s.text.split('___');
+  let html = '';
+  parts.forEach((part, pi) => {
+    html += part;
+    if (pi < s.blanks.length) {
+      html += `<input class="fill" data-idx="${idx}" data-blank="${pi}" data-answer="${s.blanks[pi]}" placeholder="${s.hints[pi]}" spellcheck="false">`;
+    }
+  });
+  textDiv.innerHTML = html;
+
+  card.appendChild(num);
+  card.appendChild(textDiv);
+  return card;
+}
+
+function checkAnswers() {
+  const inputs = document.querySelectorAll('input.fill');
+  let correct = 0, total = 0;
+  inputs.forEach(inp => {
+    const val = inp.value.trim().toLowerCase();
+    const ans = inp.dataset.answer.toLowerCase();
+    inp.classList.remove('correct','wrong');
+    if (val === '') return;
+    total++;
+    if (val === ans) { inp.classList.add('correct'); correct++; }
+    else { inp.classList.add('wrong'); }
+  });
+  const allInputs = inputs.length;
+  const scoreBox = document.getElementById('scoreBox');
+  scoreBox.style.display = 'block';
+  scoreBox.innerHTML = `Score: <strong>${correct} / ${allInputs}</strong> &nbsp;·&nbsp; ${Math.round(correct/allInputs*100)}% correct`;
+}
+
+function showAnswers() {
+  document.querySelectorAll('input.fill').forEach(inp => {
+    inp.value = inp.dataset.answer;
+    inp.classList.add('correct');
+  });
+  // build answer key
+  const key = document.getElementById('answerKey');
+  key.style.display = 'block';
+  key.innerHTML = '<h3>📋 Answer Key</h3><div class="answer-grid">' +
+    sentences.map((s,i) =>
+      `<div class="answer-item">${i+1}. <span>${s.blanks.join(', ')}</span></div>`
+    ).join('') +
+  '</div>';
+}
+
+function resetAll() {
+  document.querySelectorAll('input.fill').forEach(inp => {
+    inp.value = '';
+    inp.classList.remove('correct','wrong');
+  });
+  document.getElementById('scoreBox').style.display = 'none';
+  document.getElementById('answerKey').style.display = 'none';
+}
+
+buildExercise();
+</script>
+</body>
+</html>
